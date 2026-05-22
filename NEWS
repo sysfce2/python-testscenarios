@@ -5,6 +5,13 @@ testscenarios release notes
 IN DEVELOPMENT
 ~~~~~~~~~~~~~~
 
+CHANGES
+-------
+
+* The test suite has moved from ``testscenarios/tests`` to a top-level
+  ``tests`` directory, so it is no longer installed as part of the wheel.
+  (#28)
+
 0.6.1
 ~~~~~
 
