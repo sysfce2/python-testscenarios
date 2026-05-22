@@ -5,6 +5,16 @@ testscenarios release notes
 IN DEVELOPMENT
 ~~~~~~~~~~~~~~
 
+CHANGES
+-------
+
+* The test suite has moved from ``testscenarios/tests`` to a top-level
+  ``tests`` directory, so it is no longer installed as part of the wheel.
+  (#28)
+
+* Require testtools >= 2.8.7, the first release in which ``iterate_tests``
+  again accepts plain lists.
+
 0.6.1
 ~~~~~
 

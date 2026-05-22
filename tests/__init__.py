@@ -31,11 +31,11 @@ def load_tests(loader, standard_tests, pattern):
         "testcase",
         "scenarios",
     ]
-    prefix = "testscenarios.tests.test_"
+    prefix = "tests.test_"
     test_mod_names = [prefix + test_module for test_module in test_modules]
     standard_tests.addTests(loader.loadTestsFromNames(test_mod_names))
     doctest.set_unittest_reportflags(doctest.REPORT_ONLY_FIRST_FAILURE)
     standard_tests.addTest(
-        doctest.DocFileSuite("../../README.rst", optionflags=doctest.ELLIPSIS)
+        doctest.DocFileSuite("../README.rst", optionflags=doctest.ELLIPSIS)
     )
     return loader.suiteClass(testscenarios.generate_scenarios(standard_tests))
