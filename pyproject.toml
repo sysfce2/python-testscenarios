@@ -59,4 +59,5 @@ include = [
     "NEWS",
     "README.rst",
     "doc/*.py",
+    "tests/*.py",
     ]
