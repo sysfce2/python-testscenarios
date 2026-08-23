@@ -60,4 +60,18 @@ include = [
     "README.rst",
     "doc/*.py",
     "tests/*.py",
-    ]
+]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "PIE",
+    "UP",
+    "RSE",
+    "RUF",
+]
+ignore = [
+    "RUF012",
+]

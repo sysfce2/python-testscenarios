@@ -16,11 +16,10 @@
 # limitations under that license.
 
 import unittest
+from typing import cast
 
 import testtools
 from testtools.matchers import EndsWith
-from typing import cast
-
 
 import testscenarios
 from testscenarios.scenarios import (
@@ -115,7 +114,7 @@ class TestGenerateScenarios(testtools.TestCase):
 
 class TestApplyScenario(testtools.TestCase):
     def setUp(self):
-        super(TestApplyScenario, self).setUp()
+        super().setUp()
 
         self.scenario_name = "demo"
         self.scenario_attrs = {"foo": "bar"}
@@ -134,7 +133,6 @@ class TestApplyScenario(testtools.TestCase):
                 does nothing but pass unconditionally.
 
                 """
-                pass
 
         self.ReferenceTest = ReferenceTest
 
