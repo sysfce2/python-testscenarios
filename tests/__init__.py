@@ -20,13 +20,17 @@ import unittest
 import testscenarios
 
 
-def test_suite():
+def test_suite() -> unittest.TestSuite:
     loader = unittest.TestLoader()
     standard_tests = unittest.TestSuite()
     return load_tests(loader, standard_tests, None)
 
 
-def load_tests(loader, standard_tests, pattern):
+def load_tests(
+    loader: unittest.TestLoader,
+    standard_tests: unittest.TestSuite,
+    pattern: str | None,
+) -> unittest.TestSuite:
     test_modules = [
         "testcase",
         "scenarios",
@@ -38,4 +42,4 @@ def load_tests(loader, standard_tests, pattern):
     standard_tests.addTest(
         doctest.DocFileSuite("../README.rst", optionflags=doctest.ELLIPSIS)
     )
-    return loader.suiteClass(testscenarios.generate_scenarios(standard_tests))
+    return loader.suiteClass(list(testscenarios.generate_scenarios(standard_tests)))

@@ -40,6 +40,8 @@ __all__ = [
 ]
 
 
+import unittest
+
 from testscenarios.scenarios import (
     apply_scenario,
     apply_scenarios,
@@ -51,18 +53,22 @@ from testscenarios.scenarios import (
 from testscenarios.testcase import TestWithScenarios, WithScenarios
 
 
-def test_suite():
+def test_suite() -> unittest.TestSuite:
     import tests
 
     return tests.test_suite()
 
 
-def load_tests(loader, standard_tests, pattern):
+def load_tests(
+    loader: unittest.TestLoader,
+    standard_tests: unittest.TestSuite,
+    pattern: str | None,
+) -> unittest.TestSuite:
     standard_tests.addTests(loader.loadTestsFromNames(["tests"]))
     return standard_tests
 
 
-def __get_git_version():
+def __get_git_version() -> str | None:
     import os
     import subprocess
 
@@ -99,13 +105,17 @@ def __get_git_version():
 # If the releaselevel is 'final', then the tarball will be major.minor.micro.
 # Otherwise it is major.minor.micro~$(revno).
 
+__version__: tuple[int | str, ...]
+
 try:
     from ._version import __version__, version
 except ModuleNotFoundError:
     # package is not installed
-    if version := __get_git_version():
+    _git_version = __get_git_version()
+    if _git_version:
         # we're in a git repo
-        __version__ = tuple([int(v) if v.isdigit() else v for v in version.split(".")])
+        version = _git_version
+        __version__ = tuple(int(v) if v.isdigit() else v for v in version.split("."))
     else:
         # we're working with a tarball or similar
         version = "0.0.0"
