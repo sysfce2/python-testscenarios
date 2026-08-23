@@ -21,7 +21,6 @@ __all__ = [
 
 import unittest
 
-
 from testscenarios.scenarios import generate_scenarios
 
 _doc = """
@@ -33,7 +32,7 @@ _doc = """
     """
 
 
-class WithScenarios(object):
+class WithScenarios:
     __doc__ = (
         """A mixin for TestCase with support for declarative scenarios.
     """
@@ -56,7 +55,7 @@ class WithScenarios(object):
             for test in generate_scenarios(self):
                 test.debug()
         else:
-            return super(WithScenarios, self).debug()
+            return super().debug()
 
     def run(self, result=None):
         scenarios = self._get_scenarios()
@@ -65,7 +64,7 @@ class WithScenarios(object):
                 test.run(result)
             return
         else:
-            return super(WithScenarios, self).run(result)
+            return super().run(result)
 
 
 class TestWithScenarios(WithScenarios, unittest.TestCase):

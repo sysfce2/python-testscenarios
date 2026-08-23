@@ -23,13 +23,13 @@ __all__ = [
     "multiply_scenarios",
 ]
 
+import sys
 from itertools import (
     product,
 )
-import sys
 
-from testtools.testcase import clone_test_with_new_id
 from testtools import iterate_tests
+from testtools.testcase import clone_test_with_new_id
 
 
 def apply_scenario(scenario, test):
@@ -46,7 +46,7 @@ def apply_scenario(scenario, test):
     newtest = clone_test_with_new_id(test, test.id() + scenario_suffix)
     test_desc = test.shortDescription()
     if test_desc is not None:
-        newtest_desc = "%(test_desc)s %(scenario_suffix)s" % vars()
+        newtest_desc = f"{test_desc} {scenario_suffix}"
         newtest.shortDescription = lambda: newtest_desc
     for key, value in parameters.items():
         setattr(newtest, key, value)
@@ -101,9 +101,9 @@ def load_tests_apply_scenarios(*params):
         multiplication.
     """
     if getattr(params[0], "suiteClass", None) is not None:
-        loader, standard_tests, pattern = params
+        loader, standard_tests, _ = params
     else:
-        standard_tests, module, loader = params
+        standard_tests, _, loader = params
     result = loader.suiteClass()
     result.addTests(generate_scenarios(standard_tests))
     return result

@@ -30,17 +30,17 @@ methods for details.
 __all__ = [
     "TestWithScenarios",
     "WithScenarios",
+    "__version__",
     "apply_scenario",
     "apply_scenarios",
     "generate_scenarios",
     "load_tests_apply_scenarios",
     "multiply_scenarios",
     "per_module_scenarios",
-    "__version__",
 ]
 
 
-from testscenarios.scenarios import (  # noqa: E402
+from testscenarios.scenarios import (
     apply_scenario,
     apply_scenarios,
     generate_scenarios,
@@ -48,11 +48,11 @@ from testscenarios.scenarios import (  # noqa: E402
     multiply_scenarios,
     per_module_scenarios,
 )
-from testscenarios.testcase import TestWithScenarios, WithScenarios  # noqa: E402
+from testscenarios.testcase import TestWithScenarios, WithScenarios
 
 
 def test_suite():
-    import tests  # noqa: F401
+    import tests
 
     return tests.test_suite()
 
